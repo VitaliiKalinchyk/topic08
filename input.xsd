@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  XML schema -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		targetNamespace="http://com.epam.rd.java.basic.topic08"
+		xmlns:tns="http://com.epam.rd.java.basic.topic08">
+
+	<xsd:element name="root">
+		<!-- place an xsd content here -->
+	</xsd:element>
+
+	<!-- place an xsd content here -->
+
+</xsd:schema>

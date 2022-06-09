@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Input XML document. This XML is valid against Test.xsd XML schema-->
+
+<tn:root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://com.epam.rd.java.basic.topic08 input.xsd"
+		xmlns:tn="http://com.epam.rd.java.basic.topic08">		
+
+	<!-- place your xml content here -->
+
+</tn:root>
