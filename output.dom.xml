@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tn:exchange xmlns:tn="http://com.epam.rd.java.basic.topic08" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://com.epam.rd.java.basic.topic08 input.xsd">
+    <currency>
+        <id>36</id>
+        <name>Австралійський долар</name>
+        <rate>23.4844</rate>
+        <abr>AUD</abr>
+    </currency>
+    <currency>
+        <id>208</id>
+        <name>Данська крона</name>
+        <rate>4.7867</rate>
+        <abr>DKK</abr>
+    </currency>
+    <currency>
+        <id>124</id>
+        <name>Канадський долар</name>
+        <rate>26.8818</rate>
+        <abr>CAD</abr>
+    </currency>
+    <currency>
+        <id>191</id>
+        <name>Куна</name>
+        <rate>4.7278</rate>
+        <abr>HRK</abr>
+    </currency>
+    <currency>
+        <id>203</id>
+        <name>Чеська крона</name>
+        <rate>1.452</rate>
+        <abr>CZK</abr>
+    </currency>
+    <currency>
+        <id>156</id>
+        <name>Юань Женьміньбі</name>
+        <rate>5.0214</rate>
+        <abr>CNY</abr>
+    </currency>
+</tn:exchange>
