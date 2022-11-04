@@ -1,5 +1,6 @@
 package com.epam.rd.java.basic.topic08;
 
+import com.epam.rd.java.basic.topic08.container.Exchange;
 import com.epam.rd.java.basic.topic08.controller.*;
 
 public class Main {
@@ -17,11 +18,10 @@ public class Main {
 		////////////////////////////////////////////////////////
 		
 		// get container
-		DOMController domController = new DOMController(xmlFileName);
-		// PLACE YOUR CODE HERE
+		Controller domController = new DOMController(xmlFileName);
+		Exchange DomExchange = domController.getExchange();
 
-		// sort (case 1)
-		// PLACE YOUR CODE HERE
+		DomExchange.sortByName();
 		
 		// save
 		String outputXmlFile = "output.dom.xml";
@@ -32,11 +32,11 @@ public class Main {
 		////////////////////////////////////////////////////////
 		
 		// get
-		SAXController saxController = new SAXController(xmlFileName);
-		// PLACE YOUR CODE HERE
-		
-		// sort  (case 2)
-		// PLACE YOUR CODE HERE
+		Controller saxController = new SAXController(xmlFileName);
+		Exchange SAXExchange = saxController.getExchange();
+
+		SAXExchange.sortByRate();
+
 		
 		// save
 		outputXmlFile = "output.sax.xml";
@@ -47,15 +47,12 @@ public class Main {
 		////////////////////////////////////////////////////////
 		
 		// get
-		STAXController staxController = new STAXController(xmlFileName);
-		// PLACE YOUR CODE HERE
-		
-		// sort  (case 3)
-		// PLACE YOUR CODE HERE
+		Controller staxController = new STAXController(xmlFileName);
+		Exchange STAXExchange = staxController.getExchange();
+		STAXExchange.sortByAbr();
 		
 		// save
 		outputXmlFile = "output.stax.xml";
 		// PLACE YOUR CODE HERE
 	}
-
 }

@@ -2,13 +2,21 @@
 <!--  XML schema -->
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-		targetNamespace="http://com.epam.rd.java.basic.topic08"
-		xmlns:tns="http://com.epam.rd.java.basic.topic08">
+            targetNamespace="http://com.epam.rd.java.basic.topic08"
+            xmlns:tns="http://com.epam.rd.java.basic.topic08">
 
-	<xsd:element name="root">
-		<!-- place an xsd content here -->
-	</xsd:element>
-
-	<!-- place an xsd content here -->
-
+    <xsd:element name="exchange" type="tns:exchange_type"/>
+    <xsd:complexType name="exchange_type">
+        <xsd:sequence>
+            <xsd:element name="currency" type="tns:currency_type" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="currency_type">
+        <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="rate" type="xsd:double"/>
+            <xsd:element name="abr" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
 </xsd:schema>
