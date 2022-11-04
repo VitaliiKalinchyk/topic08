@@ -11,6 +11,7 @@ import javax.xml.stream.events.StartDocument;
 import javax.xml.stream.events.StartElement;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 public class STAXWriter implements XMLWriter {
 
@@ -23,7 +24,7 @@ public class STAXWriter implements XMLWriter {
     public void writeToXml(String file) {
         XMLEventFactory eventFactory = XMLEventFactory.newInstance();
         XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-        try (FileOutputStream outputStream = new FileOutputStream(file)) {
+        try (OutputStream outputStream = new FileOutputStream(file)) {
             XMLEventWriter writer =  outputFactory.createXMLEventWriter(outputStream);
             writer.add(eventFactory.createStartDocument("utf-8", "1.0"));
             writer.add(eventFactory.createCharacters(System.getProperty("line.separator")));
