@@ -20,7 +20,7 @@ public class DOMController implements Controller {
 	private final String XML_FILE_NAME;
 
 	public DOMController(String xmlFileName) {
-		this.XML_FILE_NAME = xmlFileName;
+		XML_FILE_NAME = xmlFileName;
 	}
 
 	@Override

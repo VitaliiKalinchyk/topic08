@@ -16,18 +16,17 @@ import java.util.function.Supplier;
 
 public class DOMWriter implements XMLWriter {
 
-    private final Exchange elementToWrite;
+    private final Exchange EXCHANGE_TO_WRITE;
 
     public DOMWriter(Exchange exchange) {
-        this.elementToWrite = exchange;
+        EXCHANGE_TO_WRITE = exchange;
     }
 
     public void writeToXml(String file) {
         Document document = getDocument();
-
         Element exchangeElement = getRootElement(document);
         document.appendChild(exchangeElement);
-        for (Currency currency : elementToWrite.getCurrencies()) {
+        for (Currency currency : EXCHANGE_TO_WRITE.getCurrencies()) {
             Element currencyElement = getCurrencyElement(document, currency);
             exchangeElement.appendChild(currencyElement);
         }

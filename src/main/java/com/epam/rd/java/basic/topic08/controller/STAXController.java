@@ -20,7 +20,7 @@ public class STAXController implements Controller {
 	private XMLEventReader xmlEventReader;
 
 	public STAXController(String xmlFileName) {
-		this.XML_FILE_NAME = xmlFileName;
+		XML_FILE_NAME = xmlFileName;
 		createXmlEventReader();
 	}
 

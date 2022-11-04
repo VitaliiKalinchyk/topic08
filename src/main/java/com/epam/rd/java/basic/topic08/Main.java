@@ -39,14 +39,18 @@ public class Main {
 		
 		// get
 		Controller saxController = new SAXController(xmlFileName);
-		Exchange SAXExchange = saxController.getExchange();
+		Exchange saxExchange = saxController.getExchange();
 
-		SAXExchange.sortByRate();
+		saxExchange.sortByRate();
 
 		
 		// save
 		outputXmlFile = "output.sax.xml";
-		// PLACE YOUR CODE HERE
+		domWriter = new DOMWriter(saxExchange);
+		domWriter.writeToXml(outputXmlFile);
+
+		// validate
+		XMLValidator.validateXML(outputXmlFile, xmlFileName);
 		
 		////////////////////////////////////////////////////////
 		// StAX

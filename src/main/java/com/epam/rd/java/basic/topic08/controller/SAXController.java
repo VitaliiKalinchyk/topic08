@@ -26,7 +26,7 @@ public class SAXController extends DefaultHandler implements Controller {
 	private String currentElement;
 
 	public SAXController(String xmlFileName) {
-		this.XML_FILE_NAME = xmlFileName;
+		XML_FILE_NAME = xmlFileName;
 	}
 
 	@Override
