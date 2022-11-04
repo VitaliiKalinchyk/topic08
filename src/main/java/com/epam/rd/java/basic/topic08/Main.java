@@ -2,6 +2,8 @@ package com.epam.rd.java.basic.topic08;
 
 import com.epam.rd.java.basic.topic08.container.Exchange;
 import com.epam.rd.java.basic.topic08.controller.*;
+import com.epam.rd.java.basic.topic08.validator.XMLValidator;
+import com.epam.rd.java.basic.topic08.writer.*;
 
 public class Main {
 	
@@ -19,13 +21,17 @@ public class Main {
 		
 		// get container
 		Controller domController = new DOMController(xmlFileName);
-		Exchange DomExchange = domController.getExchange();
+		Exchange domExchange = domController.getExchange();
 
-		DomExchange.sortByName();
+		domExchange.sortByName();
 		
 		// save
 		String outputXmlFile = "output.dom.xml";
-		// PLACE YOUR CODE HERE
+		XMLWriter domWriter = new DOMWriter(domExchange);
+		domWriter.writeToXml(outputXmlFile);
+
+		// validate
+		XMLValidator.validateXML(outputXmlFile, xmlFileName);
 
 		////////////////////////////////////////////////////////
 		// SAX
@@ -48,11 +54,15 @@ public class Main {
 		
 		// get
 		Controller staxController = new STAXController(xmlFileName);
-		Exchange STAXExchange = staxController.getExchange();
-		STAXExchange.sortByAbr();
-		
+		Exchange staxExchange = staxController.getExchange();
+		staxExchange.sortByAbr();
+
 		// save
 		outputXmlFile = "output.stax.xml";
-		// PLACE YOUR CODE HERE
+		XMLWriter staxWriter = new STAXWriter(staxExchange);
+		staxWriter.writeToXml(outputXmlFile);
+
+		// validate
+		XMLValidator.validateXML(outputXmlFile, xmlFileName);
 	}
 }

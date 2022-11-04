@@ -2,6 +2,10 @@ package com.epam.rd.java.basic.topic08.container.constants;
 
 public final class Constants {
 
+    public static final String NAMESPACE = "http://com.epam.rd.java.basic.topic08";
+
+    public static final String EXCHANGE = "exchange";
+
     public static final String CURRENCY = "currency";
 
     public static final String ID = "id";
