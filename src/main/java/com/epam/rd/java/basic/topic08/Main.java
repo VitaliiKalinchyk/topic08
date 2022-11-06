@@ -31,7 +31,7 @@ public class Main {
 		domWriter.writeToXml(outputXmlFile);
 
 		// validate
-		XMLValidator.validateXML(outputXmlFile, xmlFileName);
+		System.out.println(XMLValidator.validateXML(outputXmlFile, "input.xsd"));
 
 		////////////////////////////////////////////////////////
 		// SAX
@@ -50,8 +50,8 @@ public class Main {
 		domWriter.writeToXml(outputXmlFile);
 
 		// validate
-		XMLValidator.validateXML(outputXmlFile, xmlFileName);
-		
+		System.out.println(XMLValidator.validateXML(outputXmlFile, "input.xsd"));
+
 		////////////////////////////////////////////////////////
 		// StAX
 		////////////////////////////////////////////////////////
@@ -67,6 +67,6 @@ public class Main {
 		staxWriter.writeToXml(outputXmlFile);
 
 		// validate
-		XMLValidator.validateXML(outputXmlFile, xmlFileName);
+		System.out.println(XMLValidator.validateXML(outputXmlFile, "input.xsd"));
 	}
 }

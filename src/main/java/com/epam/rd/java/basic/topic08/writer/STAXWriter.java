@@ -24,16 +24,16 @@ public class STAXWriter implements XMLWriter {
 
     public void writeToXml(String file) {
         XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
-        OutputStream outputStream = new ByteArrayOutputStream();
-        try {
-            XMLEventWriter writer =  outputFactory.createXMLEventWriter(outputStream);
+        OutputStream rawXMLStream = new ByteArrayOutputStream();
+        try (FileOutputStream output = new FileOutputStream(file)) {
+            XMLEventWriter writer =  outputFactory.createXMLEventWriter(rawXMLStream);
             toByteArray(writer);
             writer.flush();
             writer.close();
-        } catch (XMLStreamException e) {
+            write(rawXMLStream, output);
+        } catch (IOException | TransformerException | XMLStreamException e) {
             throw new RuntimeException(e);
         }
-        writeToFile(file, formattedXML(outputStream.toString()));
     }
 
     private void toByteArray(XMLEventWriter writer) throws XMLStreamException {
@@ -64,28 +64,13 @@ public class STAXWriter implements XMLWriter {
         writer.add(EVENT_FACTORY.createEndElement("", "", field));
     }
 
-    private String formattedXML(String outputStream) {
+    private void write(OutputStream rawXMLStream, OutputStream output) throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer;
-        StringWriter output;
-        try {
-            transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
-            StreamSource source = new StreamSource(new StringReader(outputStream));
-            output = new StringWriter();
-            transformer.transform(source, new StreamResult(output));
-        } catch (TransformerException e) {
-            throw new RuntimeException(e);
-        }
-        return output.toString();
-    }
-
-    private void writeToFile(String file,String content) {
-        try (Writer outputStream = new FileWriter(file)) {
-            outputStream.write(content);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
+        StreamSource source = new StreamSource(new StringReader(rawXMLStream.toString()));
+        StreamResult result = new StreamResult(output);
+        transformer.transform(source, result);
     }
 }
