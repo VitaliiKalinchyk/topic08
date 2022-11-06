@@ -9,7 +9,6 @@ import static com.epam.rd.java.basic.topic08.container.constants.Constants.*;
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_INSTANCE_NS_URI;
 import javax.xml.stream.*;
 import javax.xml.transform.*;
-import javax.xml.transform.stream.*;
 
 import java.io.*;
 import java.util.function.Supplier;
