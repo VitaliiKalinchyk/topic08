@@ -2,6 +2,8 @@ package com.epam.rd.java.basic.topic08.writer;
 
 import com.epam.rd.java.basic.topic08.container.Currency;
 import com.epam.rd.java.basic.topic08.container.Exchange;
+import com.epam.rd.java.basic.topic08.writer.transformer.UtilityTransformer;
+
 import static com.epam.rd.java.basic.topic08.container.constants.Constants.*;
 
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_INSTANCE_NS_URI;
@@ -30,7 +32,7 @@ public class STAXWriter implements XMLWriter {
             toByteArray(writer);
             writer.flush();
             writer.close();
-            write(rawXMLStream, output);
+            UtilityTransformer.write(rawXMLStream, output);
         } catch (IOException | TransformerException | XMLStreamException e) {
             throw new RuntimeException(e);
         }
@@ -62,15 +64,5 @@ public class STAXWriter implements XMLWriter {
         writer.add(EVENT_FACTORY.createStartElement("", "", field));
         writer.add(EVENT_FACTORY.createCharacters(String.valueOf(supplier.get())));
         writer.add(EVENT_FACTORY.createEndElement("", "", field));
-    }
-
-    private void write(OutputStream rawXMLStream, OutputStream output) throws TransformerException {
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
-        StreamSource source = new StreamSource(new StringReader(rawXMLStream.toString()));
-        StreamResult result = new StreamResult(output);
-        transformer.transform(source, result);
     }
 }

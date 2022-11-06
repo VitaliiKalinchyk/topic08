@@ -3,6 +3,7 @@ package com.epam.rd.java.basic.topic08.writer;
 import com.epam.rd.java.basic.topic08.container.Currency;
 import com.epam.rd.java.basic.topic08.container.Exchange;
 import static com.epam.rd.java.basic.topic08.container.constants.Constants.*;
+import com.epam.rd.java.basic.topic08.writer.transformer.UtilityTransformer;
 
 import org.w3c.dom.*;
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_INSTANCE_NS_URI;
@@ -31,7 +32,7 @@ public class DOMWriter implements XMLWriter {
             exchangeElement.appendChild(currencyElement);
         }
         try (FileOutputStream output = new FileOutputStream(file)) {
-            write(document, output);
+            UtilityTransformer.write(document, output);
         } catch (IOException | TransformerException e) {
             throw new RuntimeException(e);
         }
@@ -58,15 +59,6 @@ public class DOMWriter implements XMLWriter {
         Element idElement = document.createElement(field);
         idElement.setTextContent(String.valueOf(supplier.get()));
         currencyElement.appendChild(idElement);
-    }
-
-    private void write(Document document, OutputStream output) throws TransformerException {
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        DOMSource source = new DOMSource(document);
-        StreamResult result = new StreamResult(output);
-        transformer.transform(source, result);
     }
 
     private Document getDocument() {
